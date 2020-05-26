@@ -29,7 +29,8 @@ class Helper
      */
     public static function resetOpCache()
     {
-        if (function_exists('opcache_reset')
+        if (!ini_get('opcache.restrict_api')
+            && function_exists('opcache_reset')
             && function_exists('opcache_get_status')
             && !empty(opcache_get_status()['opcache_enabled'])
         ) {
